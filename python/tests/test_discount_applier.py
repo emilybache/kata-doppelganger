@@ -1,10 +1,32 @@
+from discount_applier import DiscountApplier
+
+
+class SpyNotifier:
+    def __init__(self):
+        self.notified = []
+
+    def notify(self, user, message):
+        self.notified.append(user.name)
+
+
+class User:
+    def __init__(self, name):
+        self.name = name
+
+
 def test_apply_v1():
-    # TODO: write a test that fails due to the bug in
-    # DiscountApplier.apply_v1
-    pass
+    notifier = SpyNotifier()
+    user1 = User("user1")
+    discount_applier = DiscountApplier(notifier)
+    discount_applier.apply_v1(100, [user1])
+    assert user1.name in notifier.notified
 
 
 def test_apply_v2():
-    # TODO: write a test that fails due to the bug in
-    # DiscountApplier.apply_v2
-    pass
+    notifier = SpyNotifier()
+    user1 = User("user1")
+    user2 = User("user2")
+    discount_applier = DiscountApplier(notifier)
+    discount_applier.apply_v2(100, [user1, user2])
+    assert user1.name in notifier.notified
+    assert user2.name in notifier.notified

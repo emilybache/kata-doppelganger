@@ -1,7 +1,14 @@
-import pytest
+from calculator import Calculator
+
+
+class StubAuthorizer:
+    def __init__(self, stub_value):
+        self.stub_value = stub_value
+
+    def authorize(self):
+        return self.stub_value
 
 
 def test_divide_should_not_raise_any_error_when_authorized():
-    # TODO: write a test that fails due to the bug in
-    # Calculator.divide
-    pass
+    calculator = Calculator(StubAuthorizer(True))
+    assert calculator.divide(10, 2) == 5
