@@ -6,7 +6,13 @@ class ResponseCode:
         self.code = code
 
 
-class FakeHttpClient:
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+
+class SpyHttpClient:
     def __init__(self, responses=None):
         self.mailbox = []
         self.responses = responses or [ResponseCode(200)]
@@ -18,14 +24,8 @@ class FakeHttpClient:
         return response
 
 
-class User:
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
-
-
 def test_send_v1():
-    http_client = FakeHttpClient()
+    http_client = SpyHttpClient()
     sender = MailSender(http_client)
     user1 = User("user1", "email1")
     sender.send_v1(user1, "hello1")
@@ -33,7 +33,7 @@ def test_send_v1():
 
 
 def test_send_v2():
-    http_client = FakeHttpClient(responses=[ResponseCode(200), ResponseCode(503)])
+    http_client = SpyHttpClient(responses=[ResponseCode(200), ResponseCode(503)])
     sender = MailSender(http_client)
     user1 = User("user1", "email1")
     response = sender.send_v2(user1, "hello1")
