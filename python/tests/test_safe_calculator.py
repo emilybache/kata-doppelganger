@@ -6,11 +6,11 @@ from safe_calculator import SafeCalculator, Authorizer
 
 
 class StubAuthorizer(Authorizer):
-    def __init__(self, stub_value):
-        self.stub_value = stub_value
+    def __init__(self, is_authorized):
+        self.is_authorized = is_authorized
 
     def authorize(self):
-        return self.stub_value
+        return self.is_authorized
 
 
 def test_divide_should_not_raise_any_error_when_authorized():
