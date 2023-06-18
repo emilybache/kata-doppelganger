@@ -14,3 +14,4 @@ class SafeCalculator:
         if authorized:
             raise RuntimeError("Not authorized")
         return left + right
+
