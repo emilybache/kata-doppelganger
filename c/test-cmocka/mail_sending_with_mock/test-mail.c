@@ -61,39 +61,6 @@ static void test_send_one_user_with_mock(void **state)
     assert_int_equal(200, response->code);
 }
 
-static void test_send_one_user_with_spy(void **state)
-{
-    User* user;
-    Request* expected_request;
-    Response* response;
-    bool success;
-    int response_code = 500;
-    char name[MAX_NAME_LENGTH];
-    char email[MAX_NAME_LENGTH];
-    char subject[MAX_NAME_LENGTH];
-    char message[MAX_MESSAGE_LENGTH];
-
-    (void)state;  // unused variable
-
-    will_return(__wrap_http_client_post, true);
-
-    strncpy(name, "name", MAX_NAME_LENGTH -1);
-    strncpy(email, "email", MAX_NAME_LENGTH -1);
-    strncpy(subject, "New notification", MAX_NAME_LENGTH -1);
-    strncpy(message, "message", MAX_MESSAGE_LENGTH -1);
-
-    user = User_create(name, email);
-    response = Response_create(response_code);
-    expected_request = Request_create(name, email, subject, message);
-
-    expect_check(__wrap_http_client_post, request, check_request, expected_request);
-
-    success = send_mail(user, message, response);
-    assert_true(success);
-    assert_int_equal(200, response->code);
-}
-
-
 
 int main(void) {
     const struct CMUnitTest tests[] = {
