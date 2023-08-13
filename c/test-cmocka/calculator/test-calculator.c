@@ -11,7 +11,7 @@ bool __wrap_calculation_is_authorized(void) {
     return mock_type(bool);
 }
 
-static void test_divide_should_not_raise_error_when_authorized(void **state)
+static void test_should_not_raise_error_when_authorized(void **state)
 {
     int result;
     bool success;
@@ -27,9 +27,25 @@ static void test_divide_should_not_raise_error_when_authorized(void **state)
 }
 
 
+static void test_should_return_error_code_when_not_authorized(void **state)
+{
+    int result;
+    bool success;
+
+    (void)state;  // unused variable
+
+    will_return(__wrap_calculation_is_authorized, false);
+
+    result = 0;
+    success = calculator_add(10, 2, &result);
+    assert_false(success);
+}
+
+
 int main(void) {
     const struct CMUnitTest tests[] = {
-            cmocka_unit_test(test_divide_should_not_raise_error_when_authorized),
+            cmocka_unit_test(test_should_not_raise_error_when_authorized),
+            cmocka_unit_test(test_should_return_error_code_when_not_authorized),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
