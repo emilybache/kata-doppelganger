@@ -42,4 +42,5 @@ endfunction()
 
 
 add_subdirectory(calculator)
-add_subdirectory(mail_sending)
+add_subdirectory(mail_sending_with_mock)
+add_subdirectory(mail_sending_with_spy)
