@@ -42,3 +42,4 @@ endfunction()
 
 
 add_subdirectory(calculator)
+add_subdirectory(mail_sending)
