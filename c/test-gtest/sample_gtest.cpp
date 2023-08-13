@@ -2,7 +2,7 @@
 
 extern "C"
 {
-#include "sample.h"
+#include "calculator.h"
 }
 
 using namespace std;

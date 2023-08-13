@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "cmocka.h"
 
-#include "sample.h"
+#include "calculator.h"
 
 bool __wrap_calculation_is_authorized(void);
 bool __wrap_calculation_is_authorized(void) {
@@ -13,13 +13,15 @@ bool __wrap_calculation_is_authorized(void) {
 
 static void test_divide_should_not_raise_error_when_authorized(void **state)
 {
+    int result;
+    bool success;
+
     (void)state;  // unused variable
 
-    will_return(__wrap_is_authorized, true);
-    assert_true(calculation_is_authorized());
+    will_return(__wrap_calculation_is_authorized, true);
 
-    int result = 0;
-    bool success = calculator_add(10, 2, &result);
+    result = 0;
+    success = calculator_add(10, 2, &result);
     assert_true(success);
     assert_int_equal(12, result);
 }

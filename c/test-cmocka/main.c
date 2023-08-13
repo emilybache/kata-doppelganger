@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "cmocka.h"
 
-#include "sample.h"
+#include "calculator.h"
 
 bool __wrap_calculation_is_authorized(void);
 bool __wrap_calculation_is_authorized(void) {
