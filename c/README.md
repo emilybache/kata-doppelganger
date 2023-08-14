@@ -1,7 +1,17 @@
-Sample project
-==============
+Test Double Exercises
+======================
 
-This is a C empty starter project. The production code in "src" is in C. **If you would like to write your production code in C++, use a different starter project.**
+## 1. Calculator
+
+Look at the 'calculator_add' function defined in 'calculator.h'. In the implementation you will find a bug, marked with a comment. Write a test that fails because of the bug. The test failure should clearly help you find the bug.
+
+
+## Mail Sending
+Look at the 'send_mail' function defined in 'calculator.h'. In the implementation you will find a bug, marked with a comment. Write a test that fails because of the bug. The test failure should clearly help you find the bug.
+
+
+Test Code
+----------
 
 For test code there are several options: 
 

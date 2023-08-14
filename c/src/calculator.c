@@ -11,3 +11,4 @@ bool calculator_add(int left, int right, int *result)
         return false;
     }
 }
+
