@@ -18,7 +18,7 @@ static void test_should_not_raise_error_when_authorized(void **state)
 
     (void)state;  // unused variable
 
-    will_return(__wrap_calculation_is_authorized, true);
+    will_return_maybe(__wrap_calculation_is_authorized, true);
 
     result = 0;
     success = calculator_add(10, 2, &result);
@@ -34,7 +34,7 @@ static void test_should_return_error_code_when_not_authorized(void **state)
 
     (void)state;  // unused variable
 
-    will_return(__wrap_calculation_is_authorized, false);
+    will_return_maybe(__wrap_calculation_is_authorized, false);
 
     result = 0;
     success = calculator_add(10, 2, &result);
