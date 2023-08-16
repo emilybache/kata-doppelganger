@@ -13,11 +13,10 @@ User* User_create(char* name, char* email) {
 
 
 bool send_mail(User* user, char* message, Response *response) {
-    Request* request;
     char subject[MAX_NAME_LENGTH];
     strncpy(subject, "New notification", MAX_NAME_LENGTH - 1);
 
     // BUG - should be Request(user->name, user->email ...)
-    request = Request_create(user->email, user->name, subject, message);
+    Request* request = Request_create(user->email, user->name, subject, message);
     return http_client_post(request, response);
 }

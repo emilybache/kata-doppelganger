@@ -40,7 +40,6 @@ function(ADD_CMOCKA_TEST_ENVIRONMENT _TARGET_NAME)
     endif ()
 endfunction()
 
-
 add_subdirectory(calculator)
 add_subdirectory(mail_sending_with_mock)
 add_subdirectory(mail_sending_with_spy)

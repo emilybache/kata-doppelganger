@@ -10,21 +10,18 @@
 
 static void test_something(void **state)
 {
-    User* user;
-    Response* response;
-    int response_code = 500;
+    (void)state;  // unused variable
+
     char name[MAX_NAME_LENGTH];
     char email[MAX_NAME_LENGTH];
     char message[MAX_MESSAGE_LENGTH];
-
-    (void)state;  // unused variable
 
     strncpy(name, "name", MAX_NAME_LENGTH -1);
     strncpy(email, "email", MAX_NAME_LENGTH -1);
     strncpy(message, "message", MAX_MESSAGE_LENGTH -1);
 
-    user = User_create(name, email);
-    response = Response_create(response_code);
+    User* user = User_create(name, email);
+    Response* response = Response_create(500);
 
     send_mail(user, message, response);
 
