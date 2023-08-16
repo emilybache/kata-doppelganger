@@ -18,15 +18,12 @@ bool __wrap_http_client_post(Request* request, Response* response) {
 
 static void test_send_one_user_with_spy(void **state)
 {
-    User* user;
-    Response* response;
-    int response_code = 500;
+    (void)state;  // unused variable
+
     char name[MAX_NAME_LENGTH];
     char email[MAX_NAME_LENGTH];
     char subject[MAX_NAME_LENGTH];
     char message[MAX_MESSAGE_LENGTH];
-
-    (void)state;  // unused variable
 
     will_return(__wrap_http_client_post, true);
 
@@ -35,8 +32,8 @@ static void test_send_one_user_with_spy(void **state)
     strncpy(subject, "New notification", MAX_NAME_LENGTH -1);
     strncpy(message, "message", MAX_MESSAGE_LENGTH -1);
 
-    user = User_create(name, email);
-    response = Response_create(response_code);
+    User* user = User_create(name, email);
+    Response* response = Response_create(500);
 
     send_mail(user, message, response);
 
