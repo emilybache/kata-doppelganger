@@ -33,9 +33,8 @@ namespace Doppelganger.Tests
         [Test]
         public void ThrowWhenNotAuthorized_Moq()
         {
-            var authorizer = new Mock<IAuthorizer>();
-            authorizer.Setup(a => a.Authorize()).Returns(false);
-            var calculator = new Calculator(authorizer.Object);
+            IAuthorizer authorizer = Mock.Of<IAuthorizer>(a => a.Authorize() == false);
+            var calculator = new Calculator(authorizer);
             Assert.Throws<Exception>(() => calculator.Add(1, 2));
         }
     }
